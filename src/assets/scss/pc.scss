@@ -1,0 +1,35 @@
+body {
+    min-width: 1678Px !important;
+}
+.cur {
+    cursor: pointer;
+    &:hover {
+        filter: brightness(110%);
+        transform: scale(1.03);
+    }
+}
+.active {
+    animation: animationFn 1.5s ease-in-out infinite alternate;
+    @keyframes animationFn {
+      0% {
+        box-shadow: 0px 0px 5px 2px #F2BF6E;
+        transform: rotate(5deg);
+      }
+      100% {
+        transform: rotate(-5deg);
+        box-shadow: 0px 0px 20px 7px #F2BF6E;
+      }
+    }
+  }
+
+
+  .hello {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    h3{
+      width: 1000px;
+      text-align: center;
+    }
+  }
