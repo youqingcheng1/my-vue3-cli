@@ -10,7 +10,8 @@
 
 <script>
 import { reactive, ref, getCurrentInstance } from "vue";
-import { queryURLParam } from "@/config/utils";
+import utils from "@/config/utils";
+const { queryURLParam } = utils;
 import {
   computed,
   watch,
@@ -34,12 +35,13 @@ export default {
     const internalInstance = getCurrentInstance(); //获取上下文实例，ctx=vue2的this
     const ctx = internalInstance.appContext.config.globalProperties;
     const count = ref(1);
+    console.log(UserService);
 
     //钩子函数，create包含在setup里
     onMounted(() => {
       console.log(ctx);
       ctx.$message({
-        text: '测试信息提示框',
+        text: "测试信息提示框",
       });
       getStatus();
       console.log("mounted!");

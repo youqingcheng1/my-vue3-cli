@@ -1,6 +1,6 @@
 <template>
   <transition name="message-fade">
-    <div class="message-mask" v-show="visible">
+    <div class="message-mask" v-if="visible">
       <p class="cr-Message-conten">{{ text }}</p>
     </div>
   </transition>
@@ -12,25 +12,25 @@ export default {
   props: {
     text: {
       type: String,
-      default: ''
+      default: "",
     },
-    durationProp:{
-      type:Number,
-      default:2000
+    durationProp: {
+      type: Number,
+      default: 2000,
     },
-    visibleProp:{
-      type:Boolean,
-      default:false
-    }
+    visibleProp: {
+      type: Boolean,
+      default: false,
+    },
   },
-  data(){
-    return{
-      duration:this.durationProp,
-      visible: this.visibleProp
-    }
+  data() {
+    return {
+      duration: this.durationProp,
+      visible: this.visibleProp,
+    };
   },
-  mounted(){
-     if (typeof this.duration !== "number") {
+  mounted() {
+    if (typeof this.duration !== "number") {
       this.duration = 2000;
     }
     if (this.duration > 0) {
@@ -40,24 +40,29 @@ export default {
         this.visible = false;
         setTimeout(() => {
           if (this.$el && this.$el.parentNode) {
-            this.$el.parentNode.removeChild(this.$el);
+            console.log(this.$el)
+            this.$el.parentNode.remove();
           }
           // 调用组件的$destroy方法进行组件销毁
-        },200);
+        }, 200);
       }, this.duration);
     }
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>
 .message-fade-enter-active,
 .message-fade-leave-active {
   margin-top: 0em;
+  opacity: 1;
+  transform: scale(1);
   transition: all 0.5s ease;
 }
 .message-fade-enter-from,
 .message-fade-leave-to {
   margin-top: -5em;
+  opacity: 0;
+  transform: scale(0);
 }
 .message-mask {
   position: fixed;
@@ -80,6 +85,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: inherit;
     span {
       margin-right: 0.1em;
     }

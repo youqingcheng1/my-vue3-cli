@@ -2,15 +2,24 @@ import { createApp, nextTick } from 'vue'
 import messageComponent from './message.vue'
 
 let messageConstructor = null;
-let message = undefined;
+let instance = null
 
 const Message = (options = {}) => {
-  // 如果组件已渲染，则返回即可
-  if (message) {
-    // return message
+  let messageDom = document.getElementById(`MessageID`);
+  if (messageDom) {
+    let messageText = new Set(document.getElementsByClassName('cr-Message-conten'));
+    let arr = [];
+    for (let i of messageText.values()) {
+      arr.push(i.innerHTML)
+    }
+    let str = arr.some(i => {
+      return i === options.text
+    }
+    )
+    if (str) return
   }
   // 组件属性
-  const opts = {
+  let opts = {
     text: '',
     visible: false,
     ...options
@@ -19,7 +28,8 @@ const Message = (options = {}) => {
 
   messageConstructor = createApp(messageComponent, { ...opts });
   const parent = document.createElement('div');
-  const instance = messageConstructor.mount(parent)
+  parent.id = `MessageID`;
+  instance = messageConstructor.mount(parent);
   document.body.appendChild(parent)
   // 显示message
   nextTick(() => {
@@ -27,8 +37,6 @@ const Message = (options = {}) => {
   })
 
   // 将组件实例赋值给message
-  message = instance
-
   return instance
 }
 

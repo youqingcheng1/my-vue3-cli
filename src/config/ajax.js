@@ -1,7 +1,5 @@
-/* eslint-disable no-debugger */
 import axios from 'axios';
 import $message from "@/components/Message";
-// import { queryURLParam } from "@/config/utils";
 
 const ajax = axios.create({
     timeout: 1000 * 20,
@@ -20,10 +18,19 @@ ajax.defaults.headers.post["Content-Type"] =
  * 响应
  */
 ajax.interceptors.response.use(
-    response =>
-        response.status === 200 && response.data.code === 0
-            ? Promise.resolve(response.data.data)
-            : Promise.reject({ msg: response.data.msg, code: response.data.code }),
+    response => {
+        if (response.status === 200 && response.data.code === 0) {
+            return Promise.resolve(response.data.data)
+        } else {
+            if(response.status >= 500){
+                $message({ text: '系统繁忙！' });
+            } else {
+                $message({ text: response.data.msg || '请求出错！' });
+            }
+            console.log(response.data.code)
+            return Promise.reject({ msg: response.data.msg || '请求出错！', code: response.data.code || -1 })
+        }
+    },
     error => {
         const { response } = error;
         if (response.status < 500) {
@@ -39,7 +46,6 @@ ajax.interceptors.response.use(
 
 /**
  * 请求器
- * @param {} api 
  */
 ajax.interceptors.request.use(
     (config) => {
@@ -47,18 +53,6 @@ ajax.interceptors.request.use(
         const AUTH_TOKEN = localStorage.getItem("AUTH_TOKEN")
         AUTH_TOKEN && (config.headers["Authorization"] = `Bearer ${AUTH_TOKEN}`);
         //请求头添加用户校验信息
-        // let authInfo = {
-        //     uin: queryURLParam("uin"),
-        //     apiid: queryURLParam("apiid"),
-        //     lang: queryURLParam("lang"),
-        //     country: queryURLParam("country"),
-        //     auth: queryURLParam("auth"),
-        //     s2t: queryURLParam("s2t"),
-        //     time: queryURLParam("time"),
-        //     _time: new Date().getTime(),
-        // };
-        // Object.assign(config.params,{...authInfo})
-
         return config;
     },
     (error) => Promise.reject(error)
@@ -68,7 +62,8 @@ ajax.interceptors.request.use(
 /**
 * 封装ajax api接口
 * @param {api} api数组对象
-* @param {type} 不是1传入body
+* @param {type} 不是1传入body格式
+*  参数解构，{param = {},body = {},type = 1} = {} 默认参数
 */
 const ajaxFn = (api) => {
     let result = {}
@@ -77,7 +72,7 @@ const ajaxFn = (api) => {
             param = {},
             body = {},
             type = 1
-        }) => {
+        } = {}) => {
             const form = new FormData();
             Object.keys(body).forEach(i => {
                 form.append(i, body[i])

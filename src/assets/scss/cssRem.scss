@@ -1,0 +1,31 @@
+.hello {
+  min-height: 100vh;
+  background: url("../images/bg1.jpg") no-repeat center 0;
+  background-size: cover;
+  position: relative;
+  color: #ededed;
+  h3 {
+    width: 750px;
+    text-align: center;
+  }
+}
+
+.pc_scroll {
+  ::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width: 10px; /*高宽分别对应横竖滚动条的尺寸*/
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: #d54028;
+  }
+  ::-webkit-scrollbar-track {
+    /*滚动条里面轨道*/
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background: #ededed;
+  }
+}
