@@ -32,14 +32,18 @@
   }
 }
 
+.anim{
+  background: url(../images/130/1303940.png),url(../images/130/1303946.png),url(../images/130/1303942.png),url(../images/130/1303944.png),url(../images/130/1303930.png),url(../images/130/1303932.png),url(../images/130/1303934.png),url(../images/130/1303936.png),url(../images/130/1303938.png);
+}
+
 .animationImg {
   width: 750px;
   height: 563px;
   border: 1px solid #000000;
   // animation: lunbo 0.5s steps(1) infinite;
-  background: url(../images/130/1303940.png),url(../images/130/1303946.png),url(../images/130/1303942.png),url(../images/130/1303944.png),url(../images/130/1303930.png),url(../images/130/1303932.png),url(../images/130/1303934.png),url(../images/130/1303936.png),url(../images/130/1303938.png);
   animation: run 4s 1s steps(1) infinite;
-  opacity: 0;
+  -webkit-backface-visibility: hidden;
+-webkit-transform-style: preserve-3d;
   @keyframes run {
     0% {
       opacity: 1;
