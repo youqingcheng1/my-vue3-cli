@@ -4,6 +4,8 @@
   background-size: cover;
   position: relative;
   color: #ededed;
+  display: flex;
+  flex-wrap: wrap;
   h3 {
     width: 750px;
     text-align: center;
@@ -28,4 +30,66 @@
     border-radius: 10px;
     background: #ededed;
   }
+}
+
+.animationImg {
+  width: 750px;
+  height: 563px;
+  border: 1px solid #000000;
+  // animation: lunbo 0.5s steps(1) infinite;
+  background: url(../images/130/1303940.png),url(../images/130/1303946.png),url(../images/130/1303942.png),url(../images/130/1303944.png),url(../images/130/1303930.png),url(../images/130/1303932.png),url(../images/130/1303934.png),url(../images/130/1303936.png),url(../images/130/1303938.png);
+  animation: run 4s 1s steps(1) infinite;
+  opacity: 0;
+  @keyframes run {
+    0% {
+      opacity: 1;
+      background: url(../images/130/1303930.png);
+    }
+    2% {
+      background: url(../images/130/1303932.png);
+    }
+    4% {
+      background: url(../images/130/1303934.png);
+    }
+    6% {
+      background: url(../images/130/1303936.png);
+    }
+    8% {
+      background: url(../images/130/1303938.png);
+    }
+    10% {
+      background: url(../images/130/1303940.png);
+    }
+    12% {
+      background: url(../images/130/1303942.png);
+    }
+    14% {
+      background: url(../images/130/1303944.png);
+    }
+    100% {
+      background: url(../images/130/1303946.png);
+    }
+  }
+
+  // background: url('../images/animation/1.png'),url('../images/animation/2.png'),url('../images/animation/3.png'),url('../images/animation/4.png'),url('../images/animation/5.png');
+  // @keyframes lunbo {
+  //   0%{
+  //     background: url('../images/animation/1.png');
+  //   }
+  //   20%{
+  //     background: url('../images/animation/2.png');
+  //   }
+  //   40%{
+  //     background: url('../images/animation/3.png');
+  //   }
+  //   60%{
+  //     background: url('../images/animation/4.png');
+  //   }
+  //   80%{
+  //     background: url('../images/animation/5.png');
+  //   }
+  //   100%{
+  //     background: url('../images/animation/5.png');
+  //   }
+  // }
 }

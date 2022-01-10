@@ -5,6 +5,8 @@
     <h3>{{ data.authInfo.uin }}</h3>
     <h2>测试计算属性：{{ data.time }}</h2>
     <h2><button @click="clickEvent">点击</button> {{ count }}</h2>
+
+    <div class="animationImg"></div>
   </div>
 </template>
 
