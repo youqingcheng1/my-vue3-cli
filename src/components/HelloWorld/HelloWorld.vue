@@ -1,15 +1,16 @@
 <template>
   <div class="hello">
-    <img alt="Vue logo" src="../assets/images/logo.png" />
     <h1>{{ msg }}</h1>
     <h3>{{ data.authInfo.uin }}</h3>
     <h2>测试计算属性：{{ data.time }}</h2>
+    <div>模块数据：{{hello}}</div>
     <h2><button @click="clickEvent">点击</button> {{ count }}</h2>
   </div>
 </template>
 
 <script>
 import { reactive, ref, getCurrentInstance } from "vue";
+import { hello,textHello, helloObj } from "./hello";
 import utils from "@/config/utils";
 const { queryURLParam } = utils;
 import {
@@ -57,6 +58,10 @@ export default {
     const { authInfo, getStatus } = userInfo(ctx);
     const { clickEvent } = event(count, data);
 
+    textHello();
+
+    console.log(hello.value, 8888);
+
     //computed使用
     data.time = computed(() => {
       return count.value;
@@ -82,6 +87,8 @@ export default {
       count,
       ctx,
       clickEvent,
+      hello,
+      helloObj,
     };
   },
 };
