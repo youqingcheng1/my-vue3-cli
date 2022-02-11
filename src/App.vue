@@ -1,14 +1,11 @@
 <template>
-  <HelloWorld msg="测试实例组件"/>
+  <div>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+  name: "App",
 };
 </script>
