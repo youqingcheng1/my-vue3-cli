@@ -8,10 +8,13 @@ import { ref,onMounted } from "vue";
 import SVGA from "svgaplayerweb";
 export default {
   name: "aniamtionTest",
+  //https://fe-test.mini1.cn/y-activity/static/lottery.svga
+  //https://file.nidong.com/upload/gift/20200520/upload_l3xlns9v1in4heomhwgbndzxt8quc9yb.svga
+  //https://mnweb.mini1.cn/activity/minicdn/static/lottery.svga
   setup() {
     const data = ref(456);
     const bgImg =
-      "https://file.nidong.com/upload/gift/20200520/upload_l3xlns9v1in4heomhwgbndzxt8quc9yb.svga";
+      "https://mnweb.mini1.cn/activity/minicdn/static/lottery.svga";
     onMounted(() => {
       setFill();
       SVGAFn();
